@@ -1,5 +1,5 @@
 import pygame
-#from adxl345 import ADXL345
+from adxl345 import ADXL345
 
 pygame.init()
 gameLoop = True
