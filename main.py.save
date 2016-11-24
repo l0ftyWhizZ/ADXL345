@@ -1,6 +1,6 @@
 import pygame
 from adxl345 import ADXL345
-from math import *
+
 pygame.init()
 gameLoop = True
 
@@ -15,7 +15,7 @@ print "   x = %.3fG" % ( axes['x'] )
 print "   y = %.3fG" % ( axes['y'] )
 print "   z = %.3fG" % ( axes['z'] )
 '''
-multi = 500
+multi = 20.0
 
 lineList = []
 
@@ -30,8 +30,8 @@ while gameLoop:
     axes = adxl345.getAxes(True)
     displayVals();
     mainWindow.fill((0,100,255))
-    lineList.append([(axes['x']*multi), ((axes['y'])*multi)])
+    lineList.append([axes['x']*multi, axes['y']*multi])
     for i in range(len(lineList)-1):
         pygame.draw.line(mainWindow, (255,255,255), lineList[i], lineList[i+1],5);
-    fps.tick(60)
+^^^^^^^^^^    fps.tick(60)
     pygame.display.flip()
