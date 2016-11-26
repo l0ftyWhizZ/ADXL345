@@ -1,12 +1,3 @@
-# ADXL345 Python library for Raspberry Pi 
-#
-# author:  Jonathan Williamson
-# license: BSD, see LICENSE.txt included in this package
-# 
-# This is a Raspberry Pi Python implementation to help you get started with
-# the Adafruit Triple Axis ADXL345 breakout board:
-# http://shop.pimoroni.com/products/adafruit-triple-axis-accelerometer
-
 import smbus
 from time import sleep
 
@@ -98,14 +89,3 @@ class ADXL345:
         z = round(z, 4)
 
         return {"x": x, "y": y, "z": z}
-
-if __name__ == "__main__":
-    # if run directly we'll just create an instance of the class and output 
-    # the current readings
-    adxl345 = ADXL345()
-    
-    axes = adxl345.getAxes(True)
-    print "ADXL345 on address 0x%x:" % (adxl345.address)
-    print "   x = %.3fG" % ( axes['x'] )
-    print "   y = %.3fG" % ( axes['y'] )
-    print "   z = %.3fG" % ( axes['z'] )
