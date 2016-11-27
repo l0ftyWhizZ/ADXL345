@@ -1,11 +1,7 @@
 import smbus
 from time import sleep
-
-# select the correct i2c bus for this revision of Raspberry Pi
 revision = ([l[12:-1] for l in open('/proc/cpuinfo','r').readlines() if l[:8]=="Revision"]+['0000'])[0]
 bus = smbus.SMBus(1 if int(revision, 16) >= 4 else 0)
-
-# ADXL345 constants
 EARTH_GRAVITY_MS2   = 9.80665
 SCALE_MULTIPLIER    = 0.004
 
@@ -45,7 +41,6 @@ class ADXL345:
     def setBandwidthRate(self, rate_flag):
         bus.write_byte_data(self.address, BW_RATE, rate_flag)
 
-    # set the measurement range for 10-bit readings
     def setRange(self, range_flag):
         value = bus.read_byte_data(self.address, DATA_FORMAT)
 
@@ -54,12 +49,7 @@ class ADXL345:
         value |= 0x08;
 
         bus.write_byte_data(self.address, DATA_FORMAT, value)
-    
-    # returns the current reading from the sensor for each axis
-    #
-    # parameter gforce:
-    #    False (default): result is returned in m/s^2
-    #    True           : result is returned in gs
+        
     def getAxes(self, gforce = False):
         bytes = bus.read_i2c_block_data(self.address, AXES_DATA, 6)
         
