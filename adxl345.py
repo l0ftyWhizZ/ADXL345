@@ -4,24 +4,11 @@ revision = ([l[12:-1] for l in open('/proc/cpuinfo','r').readlines() if l[:8]=="
 bus = smbus.SMBus(1 if int(revision, 16) >= 4 else 0)
 EARTH_GRAVITY_MS2   = 9.80665
 SCALE_MULTIPLIER    = 0.004
-
 DATA_FORMAT         = 0x31
 BW_RATE             = 0x2C
 POWER_CTL           = 0x2D
-
-BW_RATE_1600HZ      = 0x0F
-BW_RATE_800HZ       = 0x0E
-BW_RATE_400HZ       = 0x0D
-BW_RATE_200HZ       = 0x0C
 BW_RATE_100HZ       = 0x0B
-BW_RATE_50HZ        = 0x0A
-BW_RATE_25HZ        = 0x09
-
 RANGE_2G            = 0x00
-RANGE_4G            = 0x01
-RANGE_8G            = 0x02
-RANGE_16G           = 0x03
-
 MEASURE             = 0x08
 AXES_DATA           = 0x32
 
